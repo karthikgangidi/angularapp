@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM') {
+            steps {
+                git 'https://github.com/jilu407/class-9-30-app.git'
+            }
+        }
+        stage('install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'npm run build --prod'
+            }
+        }
+        stage('karthik') {
+            steps {
+                sh 'sudo cp -r dist/class-9-30/* /var/www/html/'
+            }
+        }
+    }
+}
